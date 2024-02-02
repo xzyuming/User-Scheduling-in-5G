@@ -77,20 +77,43 @@ def search(arr,res):
         j += 1
     return arr,res
 
+# Remove implemention
+def ipRe(arr):
+    res = []
+    for i in range(len(arr)-1):
+        if (arr[i][0]<arr[i+1][0] and arr[i][1]>=arr[i+1][1]) or (arr[i][0] == arr[i+1][0] and arr[i][1]>arr[i+1][1]):
+            res.append(arr[i+1])
+    return res
+
+
 # Algo implemention
 N,K,M,p,P,R = readData('test1.txt')
 
-res = []
+# Res = []
+# for i in range(N):
+#     n = [[P[i][j],R[i][j],j+1] for j in range(K*M)]
+#     B = QuickSort(n)
+#     print(B)
+#     Res.append(ipRe(B))
+
+# for i in range(N):
+#     for k in range(len(Res[i])):
+#         Res[i][k] = [Res[i][k][2]//M+1,(Res[i][k][2]-1)%M+1,i+1]
+
+
+Res = []
 for i in range(N):
-    r =[]
     n = [[P[i][j],R[i][j],j+1] for j in range(K*M)]
     B = QuickSort(n)
-    res1,res2 = search(B,r)
-    res.append(res2)
+    r = []
+    print(B)
+    r1,r2 = search(B,r)
+    Res.append(r2)
 
-for i in range(N):
-    for k in range(len(res[i])):
-        res[i][k] = [res[i][k]//K+1,res[i][k]%K,i]
+print(Res)
+for j in range(N):
+    for k in range(len(Res[j])):
+        Res[j][k] = [(Res[j][k]-1)//M+1,(Res[j][k]-1)%M+1,j+1]
 
-print(res)
+print(Res)
 
