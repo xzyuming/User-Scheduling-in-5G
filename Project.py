@@ -35,6 +35,16 @@ def prePro(filepath):
     if K>N:
         print("No solution")
         return False
+    for i in range(N):
+        max = 0
+        counter = 0 
+        min = P[i][0]
+        for j in range(K*M):
+            if P[i][j]<min:
+                min = P[i][j]
+        if min>p:
+            print("No solution")
+            return False
     return True
 
 
@@ -141,9 +151,7 @@ def qFive():
         if prePro(f"test{i}.txt"):
             Res[f"test{i}"] = {}
             N,K,M,p,P,R = readData(f"test{i}.txt")
-            print(N)
             for k in range(N):
-                print(k)
                 n = [[P[k][j],R[k][j],j+1] for j in range(K*M)]
                 n = QuickSort(n)
                 n = IpRe(n)
@@ -154,13 +162,71 @@ def qFive():
     return Res
 
 ## Show the result
-Res = qFive()
-for i in range(1,6):
-    if Res[f"test{i}"] != False:
-        print(f"Result of test{i}:\n")
-        for k in Res[f"test{i}"]:
-            print(k)
-            print("\n")
+# Res = qFive()
+# for i in range(1,6):
+#     if Res[f"test{i}"] != False:
+#         print(f"Result of test{i}:\n")
+#         for k in Res[f"test{i}"]:
+#             print(k)
+#             print("\n")
                                 
 
+###Q6
+
+def Tmax(arr):
+    L = len(arr)
+    max = 0
+    index = 0
+    for i in range(L):
+        if max<arr[i]:
+            max = arr[i]
+            index = i
+    return index
+
+
+def greedy1(arr,pv):
+    L = len(arr)
+    lmax = []
+    Pv = []
+    Rv = []
+    T = []
+    for i in range(L):
+        Pv.append(arr[i][0][0])
+        Rv.append(arr[i][0][1])
+        T.append((arr[i][1][1]-arr[i][0][1])/(arr[i][1][0]-arr[i][0][0]))
+        lmax.append(len(arr[i]))
+    k = 0    
+    # tmp = [0,0,0]
+    l = [1 for i in range(L)]
+    while(sum(Pv)<pv):
+        k = Tmax(T) 
+        Pv[k] = arr[k][l[k]][0]
+        Rv[k] = arr[k][l[k]][1]
+        # tmp = arr[k][l[k]]
+        l[k]+=1
+        if l[k] > lmax[k]-1:
+            T[k] = 0
+            continue
+        T[k] = (arr[k][l[k]][1]-arr[k][l[k]-1][1])/(arr[k][l[k]][0]-arr[k][l[k]-1][0])
+    q = 0
+    if (sum(Pv)>pv):
+        q = (pv-sum(Pv))/Pv[k] + 1
+        Rv[k] *= q
+        Pv[k] *= q
+    return Pv,Rv,q
+
+if prePro("test3.txt"):
+    N,K,M,p,P,R = readData("test3.txt")
+    res = []
+    for k in range(N):
+        n = [[P[k][j],R[k][j],j+1] for j in range(K*M)]
+        n = QuickSort(n)
+        n = IpRe(n)
+        n = LpRe(n)
+        res.append(n)
+    print(res)
+    res1,res2,q = greedy1(res,p) 
+    print(res1)
+    print(res2)
+    print(q)
 
