@@ -1,4 +1,7 @@
 import Users
+
+
+
 class Channel():
 
     def __init__(self,index, M, K, P, R):
@@ -10,8 +13,9 @@ class Channel():
     def flatten(self):
         tab = []
         for user in self.users:
-            tab + user.powers
+            tab.extend(user.powers)
         return tab
+
     def sorted_by_power(self):
         tab = self.flatten()
         return sorted(tab, key= lambda x: x.p)
