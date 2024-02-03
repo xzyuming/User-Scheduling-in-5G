@@ -71,11 +71,11 @@ def QuickSort(arr):
 def ipRe(arr):
     rem = []
     res = [arr[0]]
-    max = arr[0][1]
     for i in range(1,len(arr)):
         res.append(arr[i])
         if res[-1][1]<=res[-2][1]:
             rem.append(res.pop())
+
     return rem
 
 
