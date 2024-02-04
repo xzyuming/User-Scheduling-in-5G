@@ -1,15 +1,12 @@
-import Channel
+import numpy as np
+
+import scheduling
 import  argparse
 
-def read_txtfile():
-    pass
-def preprocess():
-    pass
 
-def remove_IP():
-    pass
 
-def remove_ILP():
+
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -17,7 +14,7 @@ def main():
 
     args = parser.parse_args()
 
-
+    #read_txtfile(args)
 
 
 if __name__ == '__main__':
