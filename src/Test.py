@@ -31,12 +31,14 @@ def readData(path):
 
 N,K,M,p,P,R = readData('test1.txt')
 
-print(P)
-t1 = []
-for i in range(N):
-    t1.append(Channel(i,M,K,P,R))
-print(t1)
+# print(P)
+# t1 = []
+# for i in range(N):
+#     t1.append(Channel(i,M,K,P,R))
+# print(t1)
 
+t0 = Channel(0,M,K,P,R)
+print(t0)
 
 
 
