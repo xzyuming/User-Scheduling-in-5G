@@ -63,3 +63,5 @@ def readData(path):
             A.append(float(lines[N*K+4+i*3+j].split('   ')[1]))
         R.append(A)
     return N,K,M,p,P,R
+
+N,K,M,p,P,R = readData("testfile")
