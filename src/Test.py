@@ -1,3 +1,70 @@
+from scheduling import Channel
+def readData(path):
+    with open(path,'r') as f:
+        lines = f.readlines()
+        lines = [line.strip() for line in lines]
+
+    P = []
+    R = []
+    N = int(float(lines[0]))
+    M = int(float(lines[1]))
+    K = int(float(lines[2]))
+    p = float(lines[3])
+
+    for i in range(N):
+        A=[]
+        for j in range(K):
+            A.append([float(lines[4+i*K+j].split('   ')[m]) for m in range(M)])
+        P.append(A)
+    for i in range(N):
+        A=[]
+        for j in range(K):
+            A.append([float(lines[N*K+4+i*K+j].split('   ')[m]) for m in range(M)])
+        R.append(A)
+    return N,K,M,p,P,R
+
+N,K,M,p,P,R = readData('test1.txt')
+
+# print(P)
+# t1 = []
+# for i in range(N):
+#     t1.append(Channel(i,M,K,P,R))
+# print(t1)
+
+t0 = Channel(0,M,K,P,R)
+print(t0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Fonction to search the pairs that p1<p2 but r1>r2
 # def search(arr,res):
 #     if len(arr)<2:

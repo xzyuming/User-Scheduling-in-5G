@@ -1,6 +1,6 @@
 import numpy as np
 
-import Channel
+import scheduling
 import  argparse
 
 
