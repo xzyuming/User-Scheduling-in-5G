@@ -30,8 +30,7 @@ def fmin(arr):
             min = arr[i]
     return min
 
-def prePro(path):
-    N,K,M,p,P,R = readData(path)
+def prePro(N,K,M,p,P,R):
     if K>N:
         print("No solution")
         return False
@@ -42,4 +41,5 @@ def prePro(path):
             print("No solution")
             return False
     return True
+
         

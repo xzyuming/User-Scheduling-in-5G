@@ -12,14 +12,14 @@ def Imax(arr):
     return ind
 
 def greedy1(path):
-    if not prePro(path):
-        return False
     N,K,M,p,P,R = readData(path)
+    if not prePro(N,K,M,p,P,R):
+        return False
     budget = p
     arr = []
     for i in range(N):
         arr.append(Channel(i,K,M,P,R))
-        arr[i] = arr[i].LpRe()
+        rem,arr[i] = arr[i].LpRe()
     ILP = 1     # is this LP a ILP 
     lmax = []   # range of every channel after ip-lp-dominated treatment
     T = []      # arrary to compare efficiency
@@ -68,5 +68,5 @@ def greedy1(path):
         Rv[k] = xa*arr[k][a] + xb*arr[k][b]
         In[k] = {xb:arr[k][b],xa:arr[k][a]} 
     
-    return ILP, rat, Pv, Rv, In
+    return (ILP, rat, use),Pv, Rv, In
 
