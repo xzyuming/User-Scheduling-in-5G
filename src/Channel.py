@@ -4,7 +4,7 @@ import Users
 
 class Channel():
 
-    def __init__(self,index, M, K, P, R):
+    def __init__(self,index, K, M, P, R):
         self.index = index
         self.M = M
         self.K = K

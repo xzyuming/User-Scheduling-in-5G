@@ -53,15 +53,17 @@ def readData(path):
     for i in range(N):
         A=[]
         for j in range(K):
-            A.append(float(lines[4+i*3+j].split('   ')[0]))
-            A.append(float(lines[4+i*3+j].split('   ')[1]))
+            A.append(float(lines[4+i*3+j].split('   ')))
         P.append(A)
     for i in range(N):
         A=[]
         for j in range(K):
-            A.append(float(lines[N*K+4+i*3+j].split('   ')[0]))
-            A.append(float(lines[N*K+4+i*3+j].split('   ')[1]))
+            A.append(float(lines[N*K+4+i*3+j].split('   ')))
         R.append(A)
     return N,K,M,p,P,R
 
-N,K,M,p,P,R = readData("testfile")
+N,K,M,p,P,R = readData('test1.txt')
+t1 = []
+for i in range(N):
+    t1.append(Channel(i,M,K,P,R))
+print(t1)
