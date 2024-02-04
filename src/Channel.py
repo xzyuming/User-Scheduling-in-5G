@@ -19,3 +19,4 @@ class Channel():
     def sorted_by_power(self):
         tab = self.flatten()
         return sorted(tab, key= lambda x: x.p)
+

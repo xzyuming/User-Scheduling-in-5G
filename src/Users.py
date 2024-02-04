@@ -10,5 +10,7 @@ class Users():
 
 
     def remove(self, power):
-        self.powers[power.index] = None
+        return self.powers.pop(power.index)
 
+    def order(self):
+        self.powers.sort(key= lambda x: x.p)
