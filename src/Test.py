@@ -34,3 +34,32 @@
 # for j in range(N):
 #     for k in range(len(Res[j])):
 #         Res[j][k] = [(Res[j][k]-1)//M+1,(Res[j][k]-1)%M+1,j+1]
+
+
+import Channel,Power,Users
+
+def readData(path):
+    with open(path,'r') as f:
+        lines = f.readlines()
+        lines = [line.strip() for line in lines]
+
+    P = []
+    R = []
+    N = int(float(lines[0]))
+    M = int(float(lines[1]))
+    K = int(float(lines[2]))
+    p = float(lines[3])
+
+    for i in range(N):
+        A=[]
+        for j in range(K):
+            A.append(float(lines[4+i*3+j].split('   ')[0]))
+            A.append(float(lines[4+i*3+j].split('   ')[1]))
+        P.append(A)
+    for i in range(N):
+        A=[]
+        for j in range(K):
+            A.append(float(lines[N*K+4+i*3+j].split('   ')[0]))
+            A.append(float(lines[N*K+4+i*3+j].split('   ')[1]))
+        R.append(A)
+    return N,K,M,p,P,R
