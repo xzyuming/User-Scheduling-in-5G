@@ -10,7 +10,7 @@ class Users():
     
     def __init__(self, i1,i2, p: list, r: list):
         self.index = (i1,i2)
-        self.powers = [Power(i1,i2,i, value[0], value[1]) for i, value in enumerate(zip(p, r))]
+        self.powers = [Power(i1,i2,i+1, value[0], value[1]) for i, value in enumerate(zip(p, r))]
 
 
 
@@ -23,10 +23,10 @@ class Users():
 class Channel():
 
     def __init__(self,index, K, M, P, R):
-        self.index = index
+        self.index = index+1
         self.M = M
         self.K = K
-        self.users = [Users(index,i, value[0], value[1]) for i, value in enumerate(zip(P[index], R[index]))]
+        self.users = [Users(index+1,i+1, value[0], value[1]) for i, value in enumerate(zip(P[index], R[index]))]
 
     def flatten(self):
         tab = []
