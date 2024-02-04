@@ -8,7 +8,7 @@ class Channel():
         self.index = index
         self.M = M
         self.K = K
-        self.users = [Users(index, value[0], value[1]) for index, value in enumerate(zip(P, R))]
+        self.users = [Users(i, value[0], value[1]) for i, value in enumerate(zip(P[index], R[index]))]
 
     def flatten(self):
         tab = []
