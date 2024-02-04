@@ -13,20 +13,21 @@ class Users():
         self.powers = [Power(i1,i2,i+1, value[0], value[1]) for i, value in enumerate(zip(p, r))]
 
 
-
-    def remove(self, power):
-        return self.powers.pop(power.index)
-
     def order(self):
         self.powers.sort(key= lambda x: x.p)
 
 class Channel():
 
-    def __init__(self,index, K, M, P, R):
-        self.index = index+1
+    def __init__(self,ind, K, M, P, R):
+        self.index = ind+1
         self.M = M
         self.K = K
-        self.users = [Users(index+1,i+1, value[0], value[1]) for i, value in enumerate(zip(P[index], R[index]))]
+        self.users = [Users(ind+1,i+1, value[0], value[1]) for i, value in enumerate(zip(P[ind], R[ind]))]
+
+    def remove(self, ind):
+        a = ind[1]-1
+        b = ind[2]-1
+        return self.users[a].powers.pop(b)
 
     def flatten(self):
         tab = []
@@ -45,7 +46,9 @@ class Channel():
         for i in range(1,len(arr)):
             res.append(arr[i])
             if res[-1].r<=res[-2].r:
-                rem.append(res.pop())
+                int = res.pop()
+                rem.append(int)
+                self.remove(int.index)
         return rem,res
     
     def LpRe(self):
@@ -56,7 +59,9 @@ class Channel():
             for j in S[::-1]:
                 if (arr[i].r-j.r)/(arr[i].p-j.p)>=d:
                     d= (arr[i].r-j.r)/(arr[i].p-j.p)
-                    S.pop()
+                    int = S.pop()
+                    rem.append(int)
+                    self.remove(int.index)
             S.append(arr[i])
-        return S        
+        return rem,S        
     
