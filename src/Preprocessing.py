@@ -1,6 +1,4 @@
-from Channel import *
-from Users import *
-from Power import *
+from scheduling import *
 
 def readData(path):
     with open(path,'r') as f:

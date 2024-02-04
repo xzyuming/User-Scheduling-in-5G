@@ -1,7 +1,7 @@
 import os
 os.chdir("D:/GCC/User-Scheduling-in-5G/src")
 print(os.getcwd())
-import Channel
+from scheduling import *
 
 
 def readData(path):

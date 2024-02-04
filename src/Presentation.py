@@ -1,7 +1,5 @@
 from Preprocessing import *
-from Channel import *
-from Users import *
-from Power import *
+from scheduling import *
 
 def qfive(path):
     N,K,M,p,P,R = readData(path)

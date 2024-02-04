@@ -1,4 +1,6 @@
-import numpy as np
+
+from scheduling import *
+
 
 ## Get the arrays of lists which represent all elements of the matrix of each server 
 def readData(path):
