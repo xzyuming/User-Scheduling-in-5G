@@ -1,9 +1,9 @@
 import os
-os.chdir("D:/Program/Github/User-Scheduling-in-5G/src")
+os.chdir("D:/GCC/User-Scheduling-in-5G/src")
 print(os.getcwd())
-from Channel import *
-from Power import *
-from Users import *
+import Channel
+import Users
+import Power
 
 def readData(path):
     with open(path,'r') as f:
@@ -37,7 +37,7 @@ N,K,M,p,P,R = readData('test1.txt')
 #     t1.append(Channel(i,M,K,P,R))
 # print(t1)
 
-t0 = Channel(0,M,K,P,R)
+t0 = Channel.Channel(0,M,K,P,R)
 print(t0)
 
 
