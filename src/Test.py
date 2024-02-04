@@ -2,8 +2,7 @@ import os
 os.chdir("D:/GCC/User-Scheduling-in-5G/src")
 print(os.getcwd())
 import Channel
-import Users
-import Power
+
 
 def readData(path):
     with open(path,'r') as f:
@@ -31,14 +30,12 @@ def readData(path):
 
 N,K,M,p,P,R = readData('test1.txt')
 
-# print(P)
-# t1 = []
-# for i in range(N):
-#     t1.append(Channel(i,M,K,P,R))
-# print(t1)
+print(P)
+t1 = []
+for i in range(N):
+    t1.append(Channel(i,M,K,P,R))
+print(t1)
 
-t0 = Channel.Channel(0,M,K,P,R)
-print(t0)
 
 
 
