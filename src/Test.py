@@ -1,10 +1,14 @@
 import os
-os.chdir("D:/GCC/User-Scheduling-in-5G/src")
+os.chdir("D:/Program/Github/User-Scheduling-in-5G/src")
 print(os.getcwd())
 from scheduling import *
 from Greedy import *
 from Preprocessing import *
 from Presentation import *
+
+
+N,K,M,p,P,R = readData("test1.txt")
+print(prePro(N,K,M,p,P,R))
 
 
 

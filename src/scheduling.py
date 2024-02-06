@@ -6,7 +6,7 @@ class Power():
         self.index = (i1,i2,i3)
 
 
-class Users():
+class User():
     
     def __init__(self, i1,i2, p: list, r: list):
         self.index = (i1,i2)
@@ -22,7 +22,7 @@ class Channel():
         self.index = ind+1
         self.M = M
         self.K = K
-        self.users = [Users(ind+1,i+1, value[0], value[1]) for i, value in enumerate(zip(P[ind], R[ind]))]
+        self.users = [User(ind+1,i+1, value[0], value[1]) for i, value in enumerate(zip(P[ind], R[ind]))]
 
     # def remove(self, ind):
     #     a = ind[1]-1

@@ -31,9 +31,6 @@ def fmin(arr):
     return min
 
 def prePro(N,K,M,p,P,R):
-    if K>N:
-        print("No solution")
-        return False
     for i in range(N):
         P[i] = [fmin(P[i][j]) for j in range(M)]
         min = fmin(P[i])
