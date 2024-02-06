@@ -8,9 +8,13 @@ class Power():
 
 class User():
     
-    def __init__(self, i1,i2, p: list, r: list):
+    def __init__(self, i1,i2, p, r):
         self.index = (i1,i2)
-        self.powers = [Power(i1,i2,i+1, value[0], value[1]) for i, value in enumerate(zip(p, r))]
+        print(p)
+        print(r)
+        for i,value in enumerate(zip(p,r)):
+            print(i,value)
+        self.powers = [Power(i1,i2,i+1, value[0],value[1]) for i, value in enumerate(zip(p, r))]
 
 
     def order(self):
@@ -22,6 +26,8 @@ class Channel():
         self.index = ind+1
         self.M = M
         self.K = K
+        print(P)
+        # self.users = [User(ind + 1, i + 1, P[ind][i], R[ind][i]) for i in range(len(P[ind]))]
         self.users = [User(ind+1,i+1, value[0], value[1]) for i, value in enumerate(zip(P[ind], R[ind]))]
 
     # def remove(self, ind):
