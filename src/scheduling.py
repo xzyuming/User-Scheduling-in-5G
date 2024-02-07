@@ -10,10 +10,6 @@ class User():
     
     def __init__(self, i1,i2, p, r):
         self.index = (i1,i2)
-        print(p)
-        print(r)
-        for i,value in enumerate(zip(p,r)):
-            print(i,value)
         self.powers = [Power(i1,i2,i+1, value[0],value[1]) for i, value in enumerate(zip(p, r))]
 
 
@@ -26,8 +22,7 @@ class Channel():
         self.index = ind+1
         self.M = M
         self.K = K
-        print(P)
-        # self.users = [User(ind + 1, i + 1, P[ind][i], R[ind][i]) for i in range(len(P[ind]))]
+        self.length = K*M
         self.users = [User(ind+1,i+1, value[0], value[1]) for i, value in enumerate(zip(P[ind], R[ind]))]
 
     # def remove(self, ind):
@@ -56,19 +51,28 @@ class Channel():
                 ins = res.pop()
                 rem.append(ins)
                 self.users[ins.index[1]-1].powers.remove(ins)
+                self.length-=1
         return rem,res
     
     def LpRe(self):
         rem,arr = self.IpRe()
         S = [arr[0],arr[1]]
-        d = (arr[1].r-arr[0].r)/(arr[1].p-arr[0].p)
+        if arr[1].p-arr[0].p != 0:
+            d = (arr[1].r-arr[0].r)/(arr[1].p-arr[0].p)
+        else:
+            d = 1000000.00
         for i in range(2,len(arr)):
             for j in S[::-1]:
-                if (arr[i].r-j.r)/(arr[i].p-j.p)>=d:
-                    d= (arr[i].r-j.r)/(arr[i].p-j.p)
+                if arr[i].p-j.p == 0:
+                    ratio = 1000000.00
+                else:
+                    ratio = (arr[i].r-j.r)/(arr[i].p-j.p)
+                if ratio>=d:
+                    d = ratio
                     ins = S.pop()
                     rem.append(ins)
                     self.users[ins.index[1]-1].powers.remove(ins)
+                    self.length-=1
             S.append(arr[i])
         return rem,S        
     
