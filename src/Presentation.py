@@ -37,16 +37,19 @@ def qfive(path):
             D2[i].append(rem)
             for j in range(len(A)):
                 print(A[j].index,end = ' ')
-for i in range(1,6):
-    print(f"Test{i}'s results:")
-    qfive(f"test{i}.txt")
-    print("\n\n")
+# for i in range(1,6):
+#     print(f"Test{i}'s results:")
+#     qfive(f"test{i}.txt")
+#     print("\n\n")
 
 
-# def qseven(path):
-#     A,Pvalue,Rvalue,Inst = greedy1(path)
-#     print(A)
-#     print(Pvalue)
-#     print(Rvalue)
+def qseven(path):
+    A,Pvalue,Rvalue,Inst = greedy1(path)
+    print(A)
+    print(Pvalue)
+    print(Rvalue)
+
+
+qseven("test4.txt")
 
 
