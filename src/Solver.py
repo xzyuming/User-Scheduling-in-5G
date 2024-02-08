@@ -32,17 +32,24 @@ def LPsolver(N,K,M,p,P,R):
                 constraint.SetCoefficient(Varx[i][j][k],P[i][j][k])
     constraints.append(constraint)
 
-    objective = s
+    print("Number of constraints =", solver.NumConstraints())
+    
+    objective = solver.Objective()
+    for i in range(N):
+        for j in range(K):
+            for k in range(M):
+                objective.SetCoefficient(Varx[i][j][k],R[i][j][k])
+    objective.SetMaximization()
+
+    solver.Solve()
+    for i in range(N):
+        for j in range(K):
+            for k in range(M):
+                print(f"x({i+1,j+1,k+1}) = ")
+                opt_solution += Varx[i][j][k]*R[i][j][k]
+    print("Solution value: ", opt_solution)
 
 
-# Constraint 0: x + 2y <= 14.
-solver.Add(x + 2 * y <= 14.0)
 
-# Constraint 1: 3x - y >= 0.
-solver.Add(3 * x - y >= 0.0)
 
-# Constraint 2: x - y <= 2.
-solver.Add(x - y <= 2.0)
-
-print("Number of constraints =", solver.NumConstraints())
 
