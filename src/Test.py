@@ -21,7 +21,7 @@ print(A)
 LPsolver(N,K,M,p,P,R)
 
 
-
+ 
 # N,K,M,p,P,R = readData("test1.txt")
 # print(N,K,M,p)
 # print(P,R)
