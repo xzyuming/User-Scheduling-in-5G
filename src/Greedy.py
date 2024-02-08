@@ -17,8 +17,8 @@ def Imax(arr):
             ind = i
     return ind
 
-def greedy1(path):
-    N,K,M,p,P,R = readData(path)
+def greedy1(N,K,M,p,P,R):
+    # N,K,M,p,P,R = readData(path)
     if not prePro(N,K,M,p,P,R):
         return False
     budget = p

@@ -1,6 +1,7 @@
 from Preprocessing import *
 from scheduling import *
 from Greedy import *
+from Solver import *
 import os
 
 os.chdir("D:/Program/Github/User-Scheduling-in-5G/src")
@@ -44,12 +45,13 @@ def qfive(path):
 
 
 def qseven(path):
-    A,Pvalue,Rvalue,Inst = greedy1(path)
-    print(A)
-    print(Pvalue)
-    print(Rvalue)
+    N,K,M,p,P,R = readData(path)
+    if prePro(N,K,M,p,P,R):
+        A,B,C,D = greedy1(N,K,M,p,P,R)
+        E,F = LPsolver(N,K,M,p,P,R)
+        print("Greedy: Rate: ",A[1],"  , power: ", A[2])
+        print("LPsolver: Rate: ",E,"  , power: ",F)
+        print()
 
-
-qseven("test4.txt")
 
 

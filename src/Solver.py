@@ -40,7 +40,7 @@ def LPsolver(N,K,M,p,P,R):
                 constraint.SetCoefficient(Varx[i][j][k],P[i][j][k])
     constraints.append(constraint)
 
-    print("Number of constraints =", solver.NumConstraints())
+    # print("Number of constraints =", solver.NumConstraints())
     
     objective = solver.Objective()
     for i in range(N):
@@ -51,12 +51,15 @@ def LPsolver(N,K,M,p,P,R):
 
     solver.Solve()
     opt_solution = 0
+    opt_power = 0
     for i in range(N):
         for j in range(K):
             for k in range(M):
                 #print(f"x({i+1,j+1,k+1}) = ", Varx[i][j][k].solution_value())
                 opt_solution += Varx[i][j][k].solution_value()*R[i][j][k]
-    print("Solution value: ", opt_solution)
+                opt_power += Varx[i][j][k].solution_value()*P[i][j][k]
+    # print("Solution value: ", opt_solution)
+    return opt_solution,opt_power
 
 
 

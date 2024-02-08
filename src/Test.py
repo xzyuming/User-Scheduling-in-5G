@@ -4,11 +4,12 @@ print(os.getcwd())
 from scheduling import *
 from Greedy import *
 from Preprocessing import *
+from Presentation import *
 import numpy as np
 from Solver import *
 
 
-N,K,M,p,P,R = readData("test4.txt")
+# N,K,M,p,P,R = readData("test4.txt")
 # arr = []
 # for i in range(N):
 #         arr.append(Channel(i,K,M,P,R))
@@ -16,9 +17,13 @@ N,K,M,p,P,R = readData("test4.txt")
 #         arr[i].pprint()
 #         for j in range(len(res)):
 #                 print(res[j].p)
-A,B,C,D = greedy1("test4.txt")
-print(A)
-LPsolver(N,K,M,p,P,R)
+# A,B,C,D = greedy1("test4.txt")
+# print(A)
+# LPsolver(N,K,M,p,P,R)
+
+for i in range(1,6):
+    print(f"File{i}: \n")
+    qseven(f"test{i}.txt")
 
 
  
