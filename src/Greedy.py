@@ -34,7 +34,10 @@ def greedy1(path):
         Pv.append(arr[i][0].p)
         Rv.append(arr[i][0].r)
         In.append(arr[i][0])
-        T.append((arr[i][1].r-arr[i][0].r)/(arr[i][1].p-arr[i][0].p))
+        j = 0
+        while arr[i][j+1].p-arr[i][j].p ==0:
+            j += 1
+        T.append((arr[i][j+1].r-arr[i][j].r)/(arr[i][j+1].p-arr[i][j].p))
         lmax.append(len(arr[i]))
     
     k = 0   
@@ -49,7 +52,8 @@ def greedy1(path):
         if l[k] > lmax[k]-1:
             T[k] = 0
             continue
-        T[k] = (arr[k][l[k]].r-arr[k][l[k]-1].r)/(arr[k][l[k]].p-arr[k][l[k]-1].p)
+        if arr[k][l[k]].p-arr[k][l[k]-1].p != 0:
+            T[k] = (arr[k][l[k]].r-arr[k][l[k]-1].r)/(arr[k][l[k]].p-arr[k][l[k]-1].p)
     
     xa = 0
     xb = 0
@@ -63,9 +67,9 @@ def greedy1(path):
         xa = (rest-arr[k][b].p)/(arr[k][a].p - arr[k][b].p)
         xb = 1 - xa
         use = budget
-        rat = rat - xb*arr[k][a].r + xb*arr[k][b]
+        rat = rat - xb*arr[k][a].r + xb*arr[k][b].r
         Pv[k] = {xb:arr[k][b].p, xa:arr[k][a].p}
-        Rv[k] = xa*arr[k][a] + xb*arr[k][b]
+        Rv[k] = xa*arr[k][a].r + xb*arr[k][b].r
         In[k] = {xb:arr[k][b],xa:arr[k][a]} 
     
     return (ILP, rat, use),Pv, Rv, In
