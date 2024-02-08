@@ -27,16 +27,22 @@ from Solver import *
 #         qfive(f"test{i}.txt")
 
 
+
 ### Question 7
+
+## Part 1
 
 # for i in range(1,6):
 #     print()
 #     print(f"File{i}: \n")
 #     qseven1(f"test{i}.txt")
-print("File 4: \n")
-qseven2("test4.txt")
-print("File 5: \n")
-qseven2("test5.txt")
+
+## Part 2
+
+# print("File 4: \n")
+# qseven2("test4.txt")
+# print("File 5: \n")
+# qseven2("test5.txt")
 
 
 
