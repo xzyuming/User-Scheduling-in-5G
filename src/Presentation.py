@@ -1,17 +1,11 @@
+import time
 from Preprocessing import *
 from scheduling import *
 from Greedy import *
 from Solver import *
-import os
 
-os.chdir("D:/Program/Github/User-Scheduling-in-5G/src")
 
-###Question 2
 
-# N,K,M,p,P,R = readData("test1.txt")
-# print(prePro(N,K,M,p,P,R))
-
-###Question 3、4、5
 def qfive(path):
     N,K,M,p,P,R = readData(path)
     if prePro(N,K,M,p,P,R):
@@ -38,13 +32,10 @@ def qfive(path):
             D2[i].append(rem)
             for j in range(len(A)):
                 print(A[j].index,end = ' ')
-# for i in range(1,6):
-#     print(f"Test{i}'s results:")
-#     qfive(f"test{i}.txt")
-#     print("\n\n")
 
 
-def qseven(path):
+
+def qseven1(path):
     N,K,M,p,P,R = readData(path)
     if prePro(N,K,M,p,P,R):
         A,B,C,D = greedy1(N,K,M,p,P,R)
@@ -52,6 +43,24 @@ def qseven(path):
         print("Greedy: Rate: ",A[1],"  , power: ", A[2])
         print("LPsolver: Rate: ",E,"  , power: ",F)
         print()
+
+def qseven2(path):
+    N,K,M,p,P,R = readData(path)
+    start = 0
+    end = 0
+    if prePro(N,K,M,p,P,R):
+        start = time.perf_counter()
+        A,B,C,D = greedy1(N,K,M,p,P,R)
+        end = time.perf_counter()
+        print("Greedy runtime: ", end-start)
+        print()
+        start = time.perf_counter()
+        E,F = LPsolver(N,K,M,p,P,R)
+        end = time.perf_counter()
+        print("LP-solver runtime: ", end-start)
+        print()
+
+
 
 
 
