@@ -54,7 +54,7 @@ def LPsolver(N,K,M,p,P,R):
     for i in range(N):
         for j in range(K):
             for k in range(M):
-                print(f"x({i+1,j+1,k+1}) = ", Varx[i][j][k].solution_value())
+                #print(f"x({i+1,j+1,k+1}) = ", Varx[i][j][k].solution_value())
                 opt_solution += Varx[i][j][k].solution_value()*R[i][j][k]
     print("Solution value: ", opt_solution)
 

@@ -8,7 +8,7 @@ import numpy as np
 from Solver import *
 
 
-N,K,M,p,P,R = readData("test1.txt")
+N,K,M,p,P,R = readData("test4.txt")
 # arr = []
 # for i in range(N):
 #         arr.append(Channel(i,K,M,P,R))
@@ -16,7 +16,7 @@ N,K,M,p,P,R = readData("test1.txt")
 #         arr[i].pprint()
 #         for j in range(len(res)):
 #                 print(res[j].p)
-A,B,C,D = greedy1("test1.txt")
+A,B,C,D = greedy1("test4.txt")
 print(A)
 LPsolver(N,K,M,p,P,R)
 

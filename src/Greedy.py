@@ -57,7 +57,6 @@ def greedy1(path):
         if Imax(T) == -1:
             break
         k = Imax(T)
-        print(k)
         Pv[k] = arr[k][l[k]].p
         Rv[k] = arr[k][l[k]].r
         In[k] = arr[k][l[k]]
