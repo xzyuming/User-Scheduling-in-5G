@@ -10,11 +10,12 @@ class User():
     
     def __init__(self, i1,i2, p, r):
         self.index = (i1,i2)
+        self.length = len(p)
         self.powers = [Power(i1,i2,i+1, value[0],value[1]) for i, value in enumerate(zip(p, r))]
-
-
+        
     def order(self):
         self.powers.sort(key= lambda x: x.p)
+
 
 class Channel():
 
@@ -40,6 +41,14 @@ class Channel():
     def sorted_by_power(self):
         tab = self.flatten()
         return sorted(tab, key= lambda x: x.p)
+    
+    def pprint(self):
+        tab = []
+        for i in range(len(self.users)):
+            tab.append([])
+            for j in self.users[i].powers:
+                tab[i].append(j.p)
+        print(tab)
 
     def IpRe(self):
         arr = self.sorted_by_power()
@@ -50,6 +59,7 @@ class Channel():
             if res[-1].r<=res[-2].r:
                 ins = res.pop()
                 rem.append(ins)
+                self.users[ins.index[1]-1].length -= 1  
                 self.users[ins.index[1]-1].powers.remove(ins)
                 self.length-=1
         return rem,res
@@ -71,6 +81,7 @@ class Channel():
                     d = ratio
                     ins = S.pop()
                     rem.append(ins)
+                    self.users[ins.index[1]-1].length -= 1
                     self.users[ins.index[1]-1].powers.remove(ins)
                     self.length-=1
             S.append(arr[i])

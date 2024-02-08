@@ -3,6 +3,12 @@ from Preprocessing import *
 
 def Imax(arr):
     L = len(arr)
+    count = 0
+    for i in range(L):
+        if arr[i] != 0:
+            count = 1
+    if count == 0:
+        return -1
     max = 0
     ind = 0
     for i in range(L):
@@ -34,17 +40,24 @@ def greedy1(path):
         Pv.append(arr[i][0].p)
         Rv.append(arr[i][0].r)
         In.append(arr[i][0])
+        lmax.append(len(arr[i]))        
         j = 0
-        while arr[i][j+1].p-arr[i][j].p ==0:
+        while arr[i][j+1].p-arr[i][j].p == 0 and j <= lmax[i]-2:
             j += 1
+        if j == lmax[i]-1 and arr[i][j].p-arr[i][j-1].p == 0:
+            T.append(0)
+            continue
         T.append((arr[i][j+1].r-arr[i][j].r)/(arr[i][j+1].p-arr[i][j].p))
-        lmax.append(len(arr[i]))
+
     
     k = 0   
     l = [1 for i in range(N)]
 
     while(sum(Pv)<budget):
-        k = Imax(T) 
+        if Imax(T) == -1:
+            break
+        k = Imax(T)
+        print(k)
         Pv[k] = arr[k][l[k]].p
         Rv[k] = arr[k][l[k]].r
         In[k] = arr[k][l[k]]

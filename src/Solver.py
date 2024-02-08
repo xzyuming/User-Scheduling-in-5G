@@ -7,18 +7,26 @@ def LPsolver(N,K,M,p,P,R):
         return
     Constp = np.array(P)
     Constr = np.array(R)
-    Varx = np.zeros((N,K,M))
+    Varx = []
     for i in range(N):
+        Varx.append([])
         for j in range(K):
+            Varx[i].append([])
             for k in range(M):
-                Varx[i][j][k] = solver.NumVar(0,1,f"x({i+1,j+1,k+1})")
+                Varx[i][j].append(solver.NumVar(0,1,f"x({i+1,j+1,k+1})"))
+    #Varx = np.zeros((N,K,M))
+    # Varx = list(Varx)
+    # for i in range(N):
+    #     for j in range(K):
+    #         for k in range(M):
+    #             Varx[i][j][k] = 
                 #x = solver.NumVar(0, solver.infinity(), "x")
     print("Number of variables =", solver.NumVariables())
 
     # Constraint 0-N-1: forall n, sum(x) = 1
     constraints = []
     for i in range(N):
-        constraint = solver.Constraint(1)
+        constraint = solver.Constraint(1,1)
         for j in range(K):
             for k in range(M):
                 constraint.SetCoefficient(Varx[i][j][k],1)
@@ -42,11 +50,12 @@ def LPsolver(N,K,M,p,P,R):
     objective.SetMaximization()
 
     solver.Solve()
+    opt_solution = 0
     for i in range(N):
         for j in range(K):
             for k in range(M):
-                print(f"x({i+1,j+1,k+1}) = ")
-                opt_solution += Varx[i][j][k]*R[i][j][k]
+                print(f"x({i+1,j+1,k+1}) = ", Varx[i][j][k].solution_value())
+                opt_solution += Varx[i][j][k].solution_value()*R[i][j][k]
     print("Solution value: ", opt_solution)
 
 

@@ -5,11 +5,20 @@ from scheduling import *
 from Greedy import *
 from Preprocessing import *
 import numpy as np
+from Solver import *
+
 
 N,K,M,p,P,R = readData("test1.txt")
-arr = np.array(P)
-arr1 = np.zeros((4,3,2))
-print(arr1)
+# arr = []
+# for i in range(N):
+#         arr.append(Channel(i,K,M,P,R))
+#         rem,res = arr[i].LpRe()
+#         arr[i].pprint()
+#         for j in range(len(res)):
+#                 print(res[j].p)
+A,B,C,D = greedy1("test1.txt")
+print(A)
+LPsolver(N,K,M,p,P,R)
 
 
 
