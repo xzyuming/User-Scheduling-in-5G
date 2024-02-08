@@ -4,7 +4,12 @@ print(os.getcwd())
 from scheduling import *
 from Greedy import *
 from Preprocessing import *
-from Presentation import *
+import numpy as np
+
+N,K,M,p,P,R = readData("test1.txt")
+arr = np.array(P)
+arr1 = np.zeros((4,3,2))
+print(arr1)
 
 
 
