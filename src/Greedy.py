@@ -1,5 +1,5 @@
-from scheduling import *
-from Preprocessing import *
+from src.scheduling import *
+from src.Preprocessing import *
 
 def Imax(arr):
     L = len(arr)

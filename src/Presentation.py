@@ -1,14 +1,14 @@
 import time
-from Preprocessing import *
-from scheduling import *
-from Greedy import *
-from Solver import *
+from src.Preprocessing import *
+from src.scheduling import *
+from src.Greedy import *
+from src.Solver import *
 
 
 
-def qfive(path):
-    N,K,M,p,P,R = readData(path)
-    if prePro(N,K,M,p,P,R):
+def qfive(N,K,M,p,P,R):
+    # N,K,M,p,P,R = readData(path)
+    # if prePro(N,K,M,p,P,R):
         D = []
         D1 = []
         D2 = []
@@ -35,17 +35,17 @@ def qfive(path):
 
 
 
-def qseven1(path):
-    N,K,M,p,P,R = readData(path)
-    if prePro(N,K,M,p,P,R):
+def qseven1(N,K,M,p,P,R):
+    # N,K,M,p,P,R = readData(path)
+    # if prePro(N,K,M,p,P,R):
         A,B,C,D = greedy1(N,K,M,p,P,R)
         E,F = LPsolver(N,K,M,p,P,R)
         print("Greedy: Rate: ",A[1],"  , power: ", A[2])
         print("LPsolver: Rate: ",E,"  , power: ",F)
         print()
 
-def qseven2(path):
-    N,K,M,p,P,R = readData(path)
+def qseven2(N,K,M,p,P,R):
+    # N,K,M,p,P,R = readData(path)
     start = 0
     end = 0
     if prePro(N,K,M,p,P,R):
