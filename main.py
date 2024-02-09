@@ -14,7 +14,8 @@ def main():
     parser.add_argument("path", type=str, help="Path to test txt file")
 
     args = parser.parse_args()
-    N,K,M,p,P,R = readData(args)
+    
+    N,K,M,p,P,R = readData(args.path)
     if prePro(N,K,M,p,P,R):
         print("\n")
         print(args,": \n")
