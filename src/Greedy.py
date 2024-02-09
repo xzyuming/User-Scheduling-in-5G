@@ -11,7 +11,7 @@ def Imax(arr):
             ind = i
     return ind
 
-def greedy1(path):
+def greedy1(*channels):
     if not prePro(path):
         return False
     N,K,M,p,P,R = readData(path)
