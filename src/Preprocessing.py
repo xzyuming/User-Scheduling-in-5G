@@ -1,5 +1,7 @@
-from scheduling import *
+from src.scheduling import *
 from copy import deepcopy
+
+
 def readData(path):
     with open(path,'r') as f:
         lines = f.readlines()

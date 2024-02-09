@@ -3,12 +3,12 @@ from Preprocessing import *
 from scheduling import *
 from Greedy import *
 from Solver import *
+from DP import *
+from BB import *
 
-
-
-def qfive(path):
-    N,K,M,p,P,R = readData(path)
-    if prePro(N,K,M,p,P,R):
+def qfive(N,K,M,p,P,R):
+    # N,K,M,p,P,R = readData(path)
+    # if prePro(N,K,M,p,P,R):
         D = []
         D1 = []
         D2 = []
@@ -35,17 +35,18 @@ def qfive(path):
 
 
 
-def qseven1(path):
-    N,K,M,p,P,R = readData(path)
-    if prePro(N,K,M,p,P,R):
+
+def qseven1(N,K,M,p,P,R):
+    # N,K,M,p,P,R = readData(path)
+    # if prePro(N,K,M,p,P,R):
         A,B,C,D = greedy1(N,K,M,p,P,R)
         E,F = LPsolver(N,K,M,p,P,R)
         print("Greedy: Rate: ",A[1],"  , power: ", A[2])
         print("LPsolver: Rate: ",E,"  , power: ",F)
         print()
 
-def qseven2(path):
-    N,K,M,p,P,R = readData(path)
+def qseven2(N,K,M,p,P,R):
+    # N,K,M,p,P,R = readData(path)
     start = 0
     end = 0
     if prePro(N,K,M,p,P,R):
@@ -61,6 +62,23 @@ def qseven2(path):
         print()
 
 
+def q11(N, p, *channels):
+    start = 0
+    end = 0
+    start = time.perf_counter()
+    current_feasible_solution, current_feasible_bound, used_power = branch_and_bound(channels)
+    end = time.perf_counter()
+    print("Greedy runtime: ", end-start)
+    print()
+    start = time.perf_counter()
+    Dp_by_rate(N, p, channels)
+    end = time.perf_counter()
+    print("DP_power runtime: ", end - start)
+    print()
+'''    start = time.perf_counter()
+    Dp_by_rate(N, p, channels)
+    end = time.perf_counter()
+    print("DP_rate runtime: ", end-start)'''
 
 
 
