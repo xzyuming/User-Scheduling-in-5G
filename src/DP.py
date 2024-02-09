@@ -20,11 +20,14 @@ def Dp_by_power_rec(n : int, result:dict, p:float, channels:list[object]):
     k = 0
     m = 0
     used = 0
+
+
     for user in channels[n].users:
         for power in user.powers:
             if power.p> p:
                 continue
             temp = power.r + Dp_by_power_rec(n+1, result, p-power.p, channels)
+
             if temp>max:
                 max = temp
                 k = user.index
@@ -39,7 +42,9 @@ def Dp_by_rate(N: int, target: float, *channels: list[object]):
     key = sorted(result, key=lambda x: x[0])
     choices = []
     i = 1
+
     print("min spend is ", result[(i, target)["power"]])
+
     while target > 0:
         choices.append(result[(i, target)["choice"]])
         i += 1
@@ -54,11 +59,13 @@ def Dp_by_rate_rec(n: int, result: dict, r: float, channels: list[object]):
     k = 0
     m = 0
     used = 0
+
     for user in channels[n].users:
         for power in user.powers:
             if power.r > r:
                 continue
             temp = power.p + Dp_by_rate_rec(n + 1, result, r - power.r, channels)
+
             if temp < min:
                 min = temp
                 k = user.index

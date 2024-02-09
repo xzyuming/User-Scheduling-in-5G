@@ -1,10 +1,54 @@
 import os
-os.chdir("D:/GCC/User-Scheduling-in-5G/src")
+os.chdir("D:/Program/Github/User-Scheduling-in-5G/src")
 print(os.getcwd())
 from scheduling import *
 from Greedy import *
 from Preprocessing import *
 from Presentation import *
+from Solver import *
+
+###Question 2
+
+# for i in range(1,6):
+#     print("\n")
+#     print(f"File{i}: \n")
+#     N,K,M,p,P,R = readData(f"test{i}.txt")
+#     print(prePro(N,K,M,p,P,R))
+
+
+
+### Question 5
+
+# for i in range(1,6):
+#     print("\n")
+#     print(f"File{i}: \n")
+#     N,K,M,p,P,R = readData(f"test{i}.txt")
+#     if prePro(N,K,M,p,P,R):
+#         qfive(f"test{i}.txt")
+
+
+
+### Question 7
+
+## Part 1
+
+# for i in range(1,6):
+#     print()
+#     print(f"File{i}: \n")
+#     qseven1(f"test{i}.txt")
+
+## Part 2
+
+# print("File 4: \n")
+# qseven2("test4.txt")
+# print("File 5: \n")
+# qseven2("test5.txt")
+
+
+
+
+ 
+
 
 
 

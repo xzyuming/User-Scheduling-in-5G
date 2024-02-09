@@ -1,4 +1,5 @@
 import numpy as np
+import pkg_resources
 
 import scheduling
 import  argparse
@@ -13,8 +14,9 @@ def main():
     parser.add_argument("path", type=str, help="Path to test txt file")
 
     args = parser.parse_args()
+    pkg_resources.set_extraction_path
 
-    #read_txtfile(args)
+    #preprces(args)
 
 
 if __name__ == '__main__':

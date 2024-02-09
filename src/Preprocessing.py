@@ -1,5 +1,5 @@
 from scheduling import *
-
+from copy import deepcopy
 def readData(path):
     with open(path,'r') as f:
         lines = f.readlines()
@@ -30,16 +30,14 @@ def fmin(arr):
             min = arr[i]
     return min
 
-def prePro(path):
-    N,K,M,p,P,R = readData(path)
-    if K>N:
-        print("No solution")
-        return False
+def prePro(N,K,M,p,P,R):
+    arr = deepcopy(P)
     for i in range(N):
-        P[i] = [fmin(P[i][j]) for j in range(M)]
-        min = fmin(P[i])
+        arr[i] = [fmin(arr[i][j]) for j in range(M)]
+        min = fmin(arr[i])
         if min>p:
             print("No solution")
             return False
     return True
+
         
