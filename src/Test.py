@@ -1,13 +1,6 @@
-import os
-os.chdir("D:/Program/Github/User-Scheduling-in-5G/src")
-print(os.getcwd())
-from scheduling import *
-from Greedy import *
 from Preprocessing import *
-from Presentation import *
-from Solver import *
+import time
 
-###Question 2
 
 # for i in range(1,6):
 #     print("\n")
@@ -45,14 +38,60 @@ from Solver import *
 # qseven2("test5.txt")
 
 
+def Dp_by_power(target, *channels):
+    result = {}
+    Dp_by_power_rec(0, result, target, *channels)
+    choices = []
+    i = 1
+    print("max rate is ", result[(i,target)]["rate"])
+    used_power = 0
+    while i<=len(channels):
+        choices.append(result[(i,target)]["choice"])
+        used_power+= result[(i,target)]["used"]
+        target-= result[(i,target)]["used"]
+
+        i+=1
+    print("The choices made are ", choices)
+    print("used power is", used_power)
 
 
- 
+def Dp_by_power_rec(n : int, result:dict, p:float, *channels):
+    if (n+1, p) in result.keys():
+        return result[(n+1,p)]["rate"]
+    max = 0
+    k = 0
+    m = 0
+    used = 0
+
+    if(n>= len(channels)):
+        return 0
+
+    for user in channels[n].users:
+        for power in user.powers:
+            if power.p> p:
+                continue
+            temp = power.r + Dp_by_power_rec(n+1, result, p-power.p, *channels)
+
+            if temp>max:
+                max = temp
+                k = user.index[1]
+                m = power.index[2]
+                used = power.p
+    result[(n+1, p)]= {"choice" : (n+1, k, m), "rate" : max, "used": used}
+    return result[(n+1,p)]["rate"]
 
 
-
-
-
+N, K, M, p, P, R = readData("./test4.txt")
+print(prePro(N, K, M, p, P, R))
+channels = []
+for i in range(N):
+    channels.append(Channel(i, K, M, P, R))
+start = 0
+end = 0
+start = time.perf_counter()
+Dp_by_power(p, *channels)
+end = time.perf_counter()
+print("DP runtime: ", end - start)
 
 
 

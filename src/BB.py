@@ -1,8 +1,10 @@
 from queue import PriorityQueue
 import numpy as np
-from Greedy import Imax
+
+import src.scheduling
+from src.Greedy import Imax
 import copy
-from  scheduling import *
+from  src.scheduling import *
 class Node():
     def __init__(self, branch, bound, power, level, result = []):
         self.branch = branch
@@ -79,10 +81,9 @@ def greedy_solver(p, *channels): # Our greedy function
 #   return bound, result
 
 
-def branch_and_bound(*channels):
-    K = channels[0].K
+def branch_and_bound(p, *channels):
     init_bound = 0
-    branch =  np.zeros()
+    branch = []
     level = 0
     node = Node(branch, init_bound, 0, level)
     q = PriorityQueue()
@@ -94,14 +95,16 @@ def branch_and_bound(*channels):
 
     while q:
         node = q.get()
+        if node.bound < current_feasible_bound: break
         new_branch = node.branch.copy()
         data = copy.deepcopy(channels)
         for i, k in enumerate(new_branch):
-            data[i].users = data[i].users[k]
-        level = node.level +1
-        for i in range(K):
+            data[i].users = [data[i].users[k]]
+            data[i].K = 1
+        level = node.level + 1
+        for i in range(data[level - 1].K):
             new_branch.append(i)
-            new_bound, new_result = greedy_solver(data)
+            new_bound, new_result = greedy_solver(p, *data)
             node = Node(new_branch, new_bound[1], new_bound[2], level, new_result)
 
             if node.bound <= current_feasible_bound:
